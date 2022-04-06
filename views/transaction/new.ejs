@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Transaction</title>
+</head>
+<body>
+    <h1>New Transaction</h1>
+
+    <form action="/transaction" method="POST">
+        <label for="giveOrTake">Pay or Request?</label>
+        <select name="giveOrTake">
+            <option value="Pay" selected>Pay</option>
+            <option value="Request">Request</option>
+        </select>
+
+        <label for="to">Recipient</label>
+        <input type="text" for="to" name="transaction[to]">
+
+        <label for="amount">Amount $</label>
+        <input type="number" for="amount" name="transaction[amount]">
+
+        <button>Submit transaction</button>
+    </form>
+    
+    <a href="/">Home</a>
+</body>
+</html>

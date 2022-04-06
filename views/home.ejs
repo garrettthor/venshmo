@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venshmo</title>
+</head>
+<body>
+    <h1>Venshmo</h1>
+        <a href="/users/new">Register</a><br>
+        <a href="/transaction/new">New transaction</a>
+
+        <ul>
+            <% for (let user of users) { %>
+                <li><a href="users/<%=user._id%>"><%=user.userName%></a>
+                    <!-- <%=user.firstName%> <%=user.lastName%><br>
+                    Balance: $<%=user.balance%> -->
+                </li>
+            <% } %>
+        </ul>
+</body>
+</html>

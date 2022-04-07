@@ -11,13 +11,22 @@
         <a href="/users/new">Register</a><br>
         <a href="/transaction/new">New transaction</a>
 
-        <ul>
-            <% for (let user of users) { %>
-                <li><a href="users/<%=user._id%>"><%=user.userName%></a>
-                    <!-- <%=user.firstName%> <%=user.lastName%><br>
-                    Balance: $<%=user.balance%> -->
+        <% for (let transaction of transactions) { %>
+            <li>
+                <%=transaction._id%>
+            </li>
+            <ul>
+                <li>
+                    <%=transaction.type%>
                 </li>
+                <li>
+                    <%=transaction.to%>
+                </li>
+                <li>
+                    <%=transaction.amount%>
+                </li>
+            </ul>
             <% } %>
-        </ul>
+
 </body>
 </html>

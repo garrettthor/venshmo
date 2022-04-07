@@ -10,17 +10,23 @@
     <h1>New Transaction</h1>
 
     <form action="/transaction" method="POST">
-        <label for="giveOrTake">Pay or Request?</label>
-        <select name="giveOrTake">
-            <option value="Pay" selected>Pay</option>
-            <option value="Request">Request</option>
-        </select>
+        <label for="type">Pay or Request?</label>
+            <select name="transaction[type]">
+                <option value="pay" selected>Pay</option>
+                <option value="request">Request</option>
+            </select>
 
+        
         <label for="to">Recipient</label>
-        <input type="text" for="to" name="transaction[to]">
+            <select name="transaction[to]">
+
+                <!-- Alphabetize this list later -->
+                <% for (let user of users) { %> 
+                    <option value="<%=user.userName%>"><%=user.userName%></option>
+                <% } %>
 
         <label for="amount">Amount $</label>
-        <input type="number" for="amount" name="transaction[amount]">
+            <input type="number" id="amount" name="transaction[amount]">
 
         <button>Submit transaction</button>
     </form>

@@ -3,6 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const User = require('./models/user');
 const Transaction = require('./models/transaction');
+const { ppid } = require('process');
 
 
 mongoose.connect('mongodb://localhost:27017/venshmo', {
@@ -25,20 +26,26 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 
 
+
+// 'Home' route.  Right now it displays a list of all the users, but it should eventually show a feed of public transactions
 app.get('/', async(req, res) => {
-    const users = await User.find({});
+    // const users = await User.find({});
     const transactions = await Transaction.find({});
-    console.log(transactions)
-    res.render('home', { users, transactions });
+    // console.log(transactions)
+    res.render('home', { transactions });
 });
 
-app.get('/transaction/new', (req, res) => {
-    res.render('transaction/new')
+// Route to the 'New Transaction' page with form.  Loads the users for option selection in form.
+app.get('/transaction/new', async(req, res) => {
+    const users = await User.find({});
+    res.render('transaction/new', { users });
 });
 
 app.post('/transaction', async(req, res) => {
     const transaction = new Transaction(req.body.transaction);
-    console.log(transaction);
+
+    // Just testing to see if the JSON object is sent out with all pertinent data
+    // res.send(req.body.transaction)
     
     await transaction.save();
     res.redirect('/')

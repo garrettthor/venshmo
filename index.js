@@ -61,6 +61,10 @@ app.post('/users', async(req, res) => {
     res.redirect(`/users/${user._id}`)
 });
 
+app.get('/users/:id/edit', async(req, res) =>{
+    res.render('users/edit')
+});
+
 app.get('/users/:id', async(req,res) => {
     const user = await User.findById(req.params.id);
     res.render('users/show', { user })
